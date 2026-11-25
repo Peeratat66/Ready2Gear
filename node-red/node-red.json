@@ -1,0 +1,1261 @@
+[
+  {
+    "id": "1d2f8b91c5311929",
+    "type": "tab",
+    "label": "1 รับคำขอ → CiRA",
+    "disabled": false,
+    "info": ""
+  },
+  {
+    "id": "61aaea65a58af8b8",
+    "type": "tab",
+    "label": "2 ผล AI → ตอบบอร์ด",
+    "disabled": false,
+    "info": ""
+  },
+  {
+    "id": "a30b04b4ad05021f",
+    "type": "tab",
+    "label": "3 บันทึกรอบ",
+    "disabled": false,
+    "info": ""
+  },
+  {
+    "id": "2f351fc1d81dea5b",
+    "type": "tab",
+    "label": "4 Dashboard หัวหน้างาน",
+    "disabled": false,
+    "info": ""
+  },
+  {
+    "id": "brk",
+    "type": "mqtt-broker",
+    "name": "emqx",
+    "broker": "broker.emqx.io",
+    "port": "1883",
+    "clientid": "r2g-nodered-peerach",
+    "autoConnect": true,
+    "usetls": false,
+    "protocolVersion": "4",
+    "keepalive": "60",
+    "cleansession": true,
+    "birthTopic": "",
+    "closeTopic": "",
+    "willTopic": ""
+  },
+  {
+    "id": "pgc",
+    "type": "postgreSQLConfig",
+    "name": "ready2gear",
+    "host": "host.docker.internal",
+    "hostFieldType": "str",
+    "port": "5432",
+    "portFieldType": "num",
+    "database": "ready2gear",
+    "databaseFieldType": "str",
+    "ssl": "false",
+    "sslFieldType": "bool",
+    "applicationName": "r2g-nodered",
+    "applicationNameType": "str",
+    "max": "10",
+    "maxFieldType": "num",
+    "idle": "1000",
+    "idleFieldType": "num",
+    "connectionTimeout": "10000",
+    "connectionTimeoutFieldType": "num",
+    "userFieldType": "str",
+    "passwordFieldType": "str"
+  },
+  {
+    "id": "4e968a482e482845",
+    "type": "postgreSQLConfig",
+    "name": "Mine",
+    "host": "100.65.76.100",
+    "hostFieldType": "str",
+    "port": 5432,
+    "portFieldType": "num",
+    "database": "ready2gear_db",
+    "databaseFieldType": "str",
+    "ssl": "false",
+    "sslFieldType": "bool",
+    "applicationName": "",
+    "applicationNameType": "str",
+    "max": 10,
+    "maxFieldType": "num",
+    "idle": 1000,
+    "idleFieldType": "num",
+    "connectionTimeout": 10000,
+    "connectionTimeoutFieldType": "num",
+    "userFieldType": "cred",
+    "userEnv": "",
+    "passwordFieldType": "cred",
+    "passwordEnv": ""
+  },
+  {
+    "id": "uib",
+    "type": "ui-base",
+    "name": "Ready2Gear",
+    "path": "/dashboard",
+    "appIcon": "",
+    "includeClientData": true,
+    "acceptsClientConfig": [
+      "ui-notification",
+      "ui-control"
+    ],
+    "showPathInSidebar": false,
+    "headerContent": "page",
+    "navigationStyle": "default",
+    "titleBarStyle": "default",
+    "showReconnectNotification": true,
+    "notificationDisplayTime": 1,
+    "showDisconnectNotification": true,
+    "allowInstall": false
+  },
+  {
+    "id": "uit",
+    "type": "ui-theme",
+    "name": "R2G",
+    "colors": {
+      "surface": "#1f3a56",
+      "primary": "#1f6fb2",
+      "bgPage": "#f3f5f8",
+      "groupBg": "#ffffff",
+      "groupOutline": "#d9dee5"
+    },
+    "sizes": {
+      "density": "default",
+      "pagePadding": "12px",
+      "groupGap": "12px",
+      "groupBorderRadius": "6px",
+      "widgetGap": "12px"
+    }
+  },
+  {
+    "id": "pg1",
+    "type": "ui-page",
+    "name": "งาน",
+    "ui": "uib",
+    "path": "/jobs",
+    "icon": "clipboard-list",
+    "layout": "grid",
+    "theme": "uit",
+    "breakpoints": [
+      {
+        "name": "Default",
+        "px": 0,
+        "cols": 3
+      },
+      {
+        "name": "Tablet",
+        "px": 576,
+        "cols": 6
+      },
+      {
+        "name": "Small Desktop",
+        "px": 768,
+        "cols": 9
+      },
+      {
+        "name": "Desktop",
+        "px": 1024,
+        "cols": 12
+      }
+    ],
+    "tabs": [],
+    "order": 1,
+    "className": "",
+    "visible": "true",
+    "disabled": "false"
+  },
+  {
+    "id": "pg2",
+    "type": "ui-page",
+    "name": "พนักงานและเครื่องมือ",
+    "ui": "uib",
+    "path": "/data",
+    "icon": "account-group",
+    "layout": "grid",
+    "theme": "uit",
+    "breakpoints": [
+      {
+        "name": "Default",
+        "px": 0,
+        "cols": 3
+      },
+      {
+        "name": "Tablet",
+        "px": 576,
+        "cols": 6
+      },
+      {
+        "name": "Small Desktop",
+        "px": 768,
+        "cols": 9
+      },
+      {
+        "name": "Desktop",
+        "px": 1024,
+        "cols": 12
+      }
+    ],
+    "tabs": [],
+    "order": 2,
+    "className": "",
+    "visible": "true",
+    "disabled": "false"
+  },
+  {
+    "id": "pg3",
+    "type": "ui-page",
+    "name": "ประวัติการตรวจ",
+    "ui": "uib",
+    "path": "/history",
+    "icon": "history",
+    "layout": "grid",
+    "theme": "uit",
+    "breakpoints": [
+      {
+        "name": "Default",
+        "px": 0,
+        "cols": 3
+      },
+      {
+        "name": "Tablet",
+        "px": 576,
+        "cols": 6
+      },
+      {
+        "name": "Small Desktop",
+        "px": 768,
+        "cols": 9
+      },
+      {
+        "name": "Desktop",
+        "px": 1024,
+        "cols": 12
+      }
+    ],
+    "tabs": [],
+    "order": 3,
+    "className": "",
+    "visible": "true",
+    "disabled": "false"
+  },
+  {
+    "id": "g1",
+    "type": "ui-group",
+    "name": "สร้างงานใหม่",
+    "page": "pg1",
+    "width": 4,
+    "height": 1,
+    "order": 1,
+    "showTitle": true,
+    "className": "",
+    "visible": "true",
+    "disabled": "false",
+    "groupType": "default",
+    "keepLoaded": false,
+    "tab": ""
+  },
+  {
+    "id": "g2",
+    "type": "ui-group",
+    "name": "งานวันนี้และวันถัดไป",
+    "page": "pg1",
+    "width": 8,
+    "height": 1,
+    "order": 2,
+    "showTitle": true,
+    "className": "",
+    "visible": "true",
+    "disabled": "false",
+    "groupType": "default",
+    "keepLoaded": false,
+    "tab": ""
+  },
+  {
+    "id": "g3",
+    "type": "ui-group",
+    "name": "พนักงาน",
+    "page": "pg2",
+    "width": 6,
+    "height": 1,
+    "order": 1,
+    "showTitle": true,
+    "className": "",
+    "visible": "true",
+    "disabled": "false",
+    "groupType": "default",
+    "keepLoaded": false,
+    "tab": ""
+  },
+  {
+    "id": "g4",
+    "type": "ui-group",
+    "name": "เครื่องมือ",
+    "page": "pg2",
+    "width": 6,
+    "height": 1,
+    "order": 2,
+    "showTitle": true,
+    "className": "",
+    "visible": "true",
+    "disabled": "false",
+    "groupType": "default",
+    "keepLoaded": false,
+    "tab": ""
+  },
+  {
+    "id": "g5",
+    "type": "ui-group",
+    "name": "รอบที่บันทึกล่าสุด",
+    "page": "pg3",
+    "width": 12,
+    "height": 1,
+    "order": 1,
+    "showTitle": true,
+    "className": "",
+    "visible": "true",
+    "disabled": "false",
+    "groupType": "default",
+    "keepLoaded": false,
+    "tab": ""
+  },
+  {
+    "id": "30f2896732c41db5",
+    "type": "mqtt in",
+    "z": "1d2f8b91c5311929",
+    "name": "",
+    "topic": "cpe477-peerach/req",
+    "qos": "0",
+    "datatype": "json",
+    "broker": "brk",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 130,
+    "y": 120,
+    "wires": [
+      [
+        "915fdaba9046e2e1"
+      ]
+    ]
+  },
+  {
+    "id": "915fdaba9046e2e1",
+    "type": "function",
+    "z": "1d2f8b91c5311929",
+    "name": "แยกงาน + ตั้งเวลา 8 วิ",
+    "func": "// รับคำขอจากบอร์ด: {cmd:\"face\"|\"item\", request_id, image_url}\nconst p = msg.payload || {};\nif (!p.request_id || !p.image_url || (p.cmd !== \"face\" && p.cmd !== \"item\")) {\n    node.warn(\"คำขอไม่ครบ: \" + JSON.stringify(p));\n    return null;\n}\nconst busy = global.get(\"pending\");\nif (busy && Date.now() - busy.at < 10000) {\n    node.warn(\"ยังมีงานค้าง \" + busy.request_id + \" ข้ามคำขอ \" + p.request_id);\n    return null;\n}\nconst r2g = {\n    request_id: p.request_id,\n    cmd: p.cmd,\n    round_id: p.request_id.replace(/-\\d+$/, \"\"),   // request_id = round_id + \"-\" + ลำดับ\n    at: Date.now()\n};\nglobal.set(\"pending\", r2g);\nnode.status({fill: \"blue\", shape: \"dot\", text: p.cmd + \" \" + p.request_id});\n\n// ถ้า CiRA ไม่ตอบใน 8 วิ ส่งไปทาง timeout (ออกทางขาที่ 2)\nsetTimeout(() => {\n    const cur = global.get(\"pending\");\n    if (cur && cur.request_id === r2g.request_id) {\n        node.send([null, {r2g: cur, payload: \"timeout\"}]);\n    }\n}, 8000);\n\nmsg.r2g = r2g;\nmsg.url = p.image_url;\nreturn [msg, null];",
+    "outputs": 2,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 350,
+    "y": 120,
+    "wires": [
+      [
+        "2bb1e5c34eefde90"
+      ],
+      [
+        "67e6c8576728e79a"
+      ]
+    ]
+  },
+  {
+    "id": "2bb1e5c34eefde90",
+    "type": "http request",
+    "z": "1d2f8b91c5311929",
+    "name": "ดึงภาพจาก image_url",
+    "method": "GET",
+    "ret": "bin",
+    "paytoqs": "ignore",
+    "url": "",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [],
+    "x": 600,
+    "y": 100,
+    "wires": [
+      [
+        "62215bb776e9b42d"
+      ]
+    ]
+  },
+  {
+    "id": "62215bb776e9b42d",
+    "type": "function",
+    "z": "1d2f8b91c5311929",
+    "name": "เช็กว่าเป็น JPEG",
+    "func": "// ภาพต้องเป็น JPEG ที่สมบูรณ์\nconst b = msg.payload;\nif (msg.statusCode !== 200 || !Buffer.isBuffer(b) || b.length < 1000 || b[0] !== 0xFF || b[1] !== 0xD8) {\n    node.warn(\"ดึงภาพไม่สำเร็จ status=\" + msg.statusCode);\n    return [null, msg];\n}\nglobal.set(\"lastImage\", b);\nmsg.filename = \"/data/r2g/\" + msg.r2g.cmd + \".jpg\";   // = F:\\477\\R2G\\face.jpg หรือ item.jpg\nreturn [msg, null];",
+    "outputs": 2,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 820,
+    "y": 100,
+    "wires": [
+      [
+        "0383975482567e7f"
+      ],
+      [
+        "67e6c8576728e79a"
+      ]
+    ]
+  },
+  {
+    "id": "0383975482567e7f",
+    "type": "file",
+    "z": "1d2f8b91c5311929",
+    "name": "บันทึกไฟล์ภาพ",
+    "filename": "filename",
+    "filenameType": "msg",
+    "appendNewline": false,
+    "createDir": true,
+    "overwriteFile": "true",
+    "encoding": "none",
+    "x": 1030,
+    "y": 100,
+    "wires": [
+      [
+        "43a18f377ac1f2e6"
+      ]
+    ]
+  },
+  {
+    "id": "43a18f377ac1f2e6",
+    "type": "function",
+    "z": "1d2f8b91c5311929",
+    "name": "สร้างคำสั่ง ai/…/req",
+    "func": "// สั่ง CiRA ให้อ่านไฟล์ที่เพิ่งบันทึก\nconst cfg = global.get(\"cfg\") || {};\nconst pend = global.get(\"pending\");\nif (pend && pend.request_id === msg.r2g.request_id) {\n    pend.sentAt = Date.now();\n    global.set(\"pending\", pend);\n}\n// โหมดสำรอง: ไม่มีโมเดลใบหน้า → ตอบผลใบหน้าแทน CiRA ทันที\nif (msg.r2g.cmd === \"face\" && cfg.FIXED_FACE) {\n    msg.topic = \"cpe477-peerach/ai/face/res\";\n    msg.payload = {model: \"face\", best: {label: cfg.FIXED_FACE, score: 1}, counts: {}, fixed: true};\n    return msg;\n}\nmsg.topic = \"cpe477-peerach/ai/\" + msg.r2g.cmd + \"/req\";\nmsg.payload = {request_id: msg.r2g.request_id};\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1240,
+    "y": 100,
+    "wires": [
+      [
+        "2dda4cc9f365ba89"
+      ]
+    ]
+  },
+  {
+    "id": "2dda4cc9f365ba89",
+    "type": "mqtt out",
+    "z": "1d2f8b91c5311929",
+    "name": "ส่งให้ CiRA",
+    "topic": "",
+    "qos": "0",
+    "retain": "false",
+    "respTopic": "",
+    "contentType": "",
+    "userProps": "",
+    "correl": "",
+    "expiry": "",
+    "broker": "brk",
+    "x": 1450,
+    "y": 100,
+    "wires": []
+  },
+  {
+    "id": "957dc15b9b5581cb",
+    "type": "catch",
+    "z": "1d2f8b91c5311929",
+    "name": "error ในแท็บนี้",
+    "scope": null,
+    "uncaught": false,
+    "x": 830,
+    "y": 200,
+    "wires": [
+      [
+        "67e6c8576728e79a"
+      ]
+    ]
+  },
+  {
+    "id": "67e6c8576728e79a",
+    "type": "link out",
+    "z": "1d2f8b91c5311929",
+    "name": "ไป timeout",
+    "mode": "link",
+    "links": [
+      "668ee6da84449350"
+    ],
+    "x": 1065,
+    "y": 200,
+    "wires": []
+  },
+  {
+    "id": "2bdbab46e05a4114",
+    "type": "comment",
+    "z": "1d2f8b91c5311929",
+    "name": "ไฟล์ภาพอยู่ที่ F:\\477\\R2G\\face.jpg และ item.jpg (ใน container = /data/r2g/)",
+    "info": "",
+    "x": 420,
+    "y": 40,
+    "wires": []
+  },
+  {
+    "id": "c8716a928927630c",
+    "type": "inject",
+    "z": "1d2f8b91c5311929",
+    "name": "ตั้งค่า (ทำงานตอน Deploy)",
+    "props": [],
+    "repeat": "",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "0.5",
+    "topic": "",
+    "x": 170,
+    "y": 320,
+    "wires": [
+      [
+        "c19d44dafafb3035"
+      ]
+    ]
+  },
+  {
+    "id": "c19d44dafafb3035",
+    "type": "function",
+    "z": "1d2f8b91c5311929",
+    "name": "ตั้งค่าโหมดสำรอง",
+    "func": "// ===== ตั้งค่าโหมดสำรอง (แก้ตรงนี้ที่เดียว แล้ว Deploy) =====\nglobal.set(\"cfg\", {\n    // ยังไม่มีโมเดลใบหน้า: ใส่ face_label ของคนที่จะใช้สาธิต เช่น \"Somchai\"\n    // ระบบจะข้าม CiRA ตอนสแกนหน้า แล้วใช้ชื่อนี้เลย · เว้นว่าง \"\" = ใช้ AI จริง\n    FIXED_FACE: \"\",\n\n    // CiRA ใช้ Auto Run วนตรวจตลอด (ยังทำตัวกั้นไม่ได้): ตั้ง 1500\n    // จะทิ้งผล AI ที่มาเร็วกว่า 1.5 วิหลังสั่ง (อาจเป็นผลของภาพเก่า) · 0 = ปิด\n    MIN_FRESH_MS: 0\n});\nnode.status({fill:\"green\", shape:\"dot\", text: JSON.stringify(global.get(\"cfg\"))});\nreturn null;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 400,
+    "y": 320,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "5094b2aad5ce6b71",
+    "type": "mqtt in",
+    "z": "61aaea65a58af8b8",
+    "name": "",
+    "topic": "cpe477-peerach/ai/face/res",
+    "qos": "0",
+    "datatype": "json",
+    "broker": "brk",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 140,
+    "y": 80,
+    "wires": [
+      [
+        "addc98b09e7629a0"
+      ]
+    ]
+  },
+  {
+    "id": "addc98b09e7629a0",
+    "type": "function",
+    "z": "61aaea65a58af8b8",
+    "name": "เลือกคน (≥ 0.70)",
+    "func": "// ผลใบหน้าจาก CiRA: {model, counts, best:{label, score}}\nconst pend = global.get(\"pending\");\nif (!pend || pend.cmd !== \"face\") return null;\nconst cfg_ = global.get(\"cfg\") || {};\nif (pend && cfg_.MIN_FRESH_MS && !(msg.payload && msg.payload.fixed) && (!pend.sentAt || Date.now() - pend.sentAt < cfg_.MIN_FRESH_MS)) {\n    return null;   // ผลมาเร็วเกินไป อาจเป็นผลของภาพเก่า รอรอบถัดไป\n}\n      // ผลที่ไม่ได้รอ ทิ้ง\nconst ai = msg.payload || {};\nconst best = ai.best || {};\nmsg.r2g = pend;\nmsg.ai = ai;\nconst MIN = 0.70;                                    // ความมั่นใจขั้นต่ำของใบหน้า\nif (!best.label || !(best.score >= MIN)) {\n    msg.result = {request_id: pend.request_id, name: \"unknown\"};\n    return [null, msg];\n}\nmsg.params = [best.label];\nreturn [msg, null];",
+    "outputs": 2,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 360,
+    "y": 80,
+    "wires": [
+      [
+        "20ef4d3dd37bd914"
+      ],
+      [
+        "2b3d0d3e9b46a974"
+      ]
+    ]
+  },
+  {
+    "id": "20ef4d3dd37bd914",
+    "type": "postgresql",
+    "z": "61aaea65a58af8b8",
+    "name": "หางานวันนี้",
+    "query": "SELECT w.id AS worker_id, w.employee_code, w.name,\n       j.id AS job_id, j.status, t.cira_label, jt.qty\nFROM workers w\nJOIN jobs j       ON j.worker_id = w.id\n                 AND j.job_date = CURRENT_DATE\n                 AND j.status IN ('assigned','out')\nJOIN job_tools jt ON jt.job_id = j.id\nJOIN tools t      ON t.id = jt.tool_id AND t.active\nWHERE w.face_label = $1 AND w.active\nORDER BY j.id, t.id;",
+    "postgreSQLConfig": "4e968a482e482845",
+    "split": false,
+    "rowsPerMsg": "1",
+    "outputs": 1,
+    "x": 570,
+    "y": 60,
+    "wires": [
+      [
+        "b8b49ca4b3bb1452"
+      ]
+    ]
+  },
+  {
+    "id": "b8b49ca4b3bb1452",
+    "type": "function",
+    "z": "61aaea65a58af8b8",
+    "name": "สร้าง result ใบหน้า",
+    "func": "// สร้างผลให้บอร์ด: name, employee_id, required[]\nconst pend = msg.r2g;\nconst rows = Array.isArray(msg.payload) ? msg.payload : [];\nif (!rows.length) {                                   // จำหน้าได้ แต่ไม่มีงานวันนี้\n    msg.result = {request_id: pend.request_id, name: \"unknown\"};\n    node.warn(\"ไม่มีงานวันนี้ของ \" + msg.params[0]);\n    return msg;\n}\nconst job = rows[0].job_id;                           // ถ้ามีหลายงาน ใช้งานแรก\nconst mine = rows.filter(r => r.job_id === job);\nconst jobs = global.get(\"roundJobs\") || {};\njobs[pend.round_id] = {job_id: job, status: mine[0].status, at: Date.now()};\nglobal.set(\"roundJobs\", jobs);\nmsg.result = {\n    request_id: pend.request_id,\n    employee_id: mine[0].employee_code,\n    name: mine[0].name,\n    job_id: job,\n    required: mine.map(r => ({label: r.cira_label, qty: r.qty}))\n};\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 780,
+    "y": 60,
+    "wires": [
+      [
+        "2b3d0d3e9b46a974"
+      ]
+    ]
+  },
+  {
+    "id": "7a1d9f3ad9ec8dfe",
+    "type": "mqtt in",
+    "z": "61aaea65a58af8b8",
+    "name": "",
+    "topic": "cpe477-peerach/ai/item/res",
+    "qos": "0",
+    "datatype": "json",
+    "broker": "brk",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 140,
+    "y": 180,
+    "wires": [
+      [
+        "dd428cc04a5f129f"
+      ]
+    ]
+  },
+  {
+    "id": "dd428cc04a5f129f",
+    "type": "function",
+    "z": "61aaea65a58af8b8",
+    "name": "เลือกชนิด (best)",
+    "func": "// ผลของ 1 ชิ้นจาก CiRA: ตอนนี้ใช้ชนิดเดียว (best) และแนบ counts ไปด้วย\nconst pend = global.get(\"pending\");\nif (!pend || pend.cmd !== \"item\") return null;\nconst cfg_ = global.get(\"cfg\") || {};\nif (pend && cfg_.MIN_FRESH_MS && (!pend.sentAt || Date.now() - pend.sentAt < cfg_.MIN_FRESH_MS)) {\n    return null;   // ผลมาเร็วเกินไป อาจเป็นผลของภาพเก่า รอรอบถัดไป\n}\n\nconst ai = msg.payload || {};\nconst best = ai.best || {};\nmsg.r2g = pend;\nmsg.ai = ai;\nmsg.result = {request_id: pend.request_id, label: best.label || \"\", counts: ai.counts || {}};\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 360,
+    "y": 180,
+    "wires": [
+      [
+        "2b3d0d3e9b46a974"
+      ]
+    ]
+  },
+  {
+    "id": "668ee6da84449350",
+    "type": "link in",
+    "z": "61aaea65a58af8b8",
+    "name": "timeout",
+    "links": [
+      "67e6c8576728e79a"
+    ],
+    "x": 265,
+    "y": 260,
+    "wires": [
+      [
+        "db7d8597a0f52bd0"
+      ]
+    ]
+  },
+  {
+    "id": "db7d8597a0f52bd0",
+    "type": "function",
+    "z": "61aaea65a58af8b8",
+    "name": "timeout → ให้ลองใหม่",
+    "func": "// CiRA ไม่ตอบ หรือดึงภาพไม่ได้ → ตอบบอร์ดให้ลองใหม่\nconst pend = msg.r2g || global.get(\"pending\");\nif (!pend) return null;\nmsg.r2g = pend;\nmsg.ai = {error: \"timeout\"};\nmsg.result = pend.cmd === \"face\"\n    ? {request_id: pend.request_id, name: \"unknown\"}\n    : {request_id: pend.request_id, label: \"\", counts: {}};\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 450,
+    "y": 260,
+    "wires": [
+      [
+        "2b3d0d3e9b46a974"
+      ]
+    ]
+  },
+  {
+    "id": "2b3d0d3e9b46a974",
+    "type": "function",
+    "z": "61aaea65a58af8b8",
+    "name": "ส่งผล + ล้างงานค้าง",
+    "func": "// ส่งผลเฉพาะคำขอที่กำลังรอ แล้วล้างงานค้าง\nconst cur = global.get(\"pending\");\nif (!cur || !msg.result || cur.request_id !== msg.result.request_id) return null;\nglobal.set(\"pending\", null);\nconst ai = msg.ai || {};\nconst best = ai.best || {};\nconst out = {topic: \"cpe477-peerach/result\", payload: msg.result};\nconst log = {params: [\n    cur.request_id, cur.round_id, cur.cmd,\n    msg.result.label !== undefined ? msg.result.label : (msg.result.name || \"\"),\n    best.score || null,\n    JSON.stringify(ai.counts || {}),\n    cur.cmd === \"item\" ? global.get(\"lastImage\") : null     // ไม่เก็บภาพใบหน้า (PDPA)\n]};\nnode.status({fill: \"green\", shape: \"dot\", text: JSON.stringify(msg.result).slice(0, 60)});\nreturn [out, log];",
+    "outputs": 2,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1010,
+    "y": 140,
+    "wires": [
+      [
+        "89833bdbbfee44a3",
+        "5a77fd7a0aa97cb4"
+      ],
+      [
+        "70b1851ef50e7246"
+      ]
+    ]
+  },
+  {
+    "id": "89833bdbbfee44a3",
+    "type": "mqtt out",
+    "z": "61aaea65a58af8b8",
+    "name": "ตอบบอร์ด",
+    "topic": "",
+    "qos": "0",
+    "retain": "false",
+    "respTopic": "",
+    "contentType": "",
+    "userProps": "",
+    "correl": "",
+    "expiry": "",
+    "broker": "brk",
+    "x": 1260,
+    "y": 120,
+    "wires": []
+  },
+  {
+    "id": "5a77fd7a0aa97cb4",
+    "type": "debug",
+    "z": "61aaea65a58af8b8",
+    "name": "ผลที่ส่ง",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1250,
+    "y": 80,
+    "wires": []
+  },
+  {
+    "id": "70b1851ef50e7246",
+    "type": "postgresql",
+    "z": "61aaea65a58af8b8",
+    "name": "บันทึก scans",
+    "query": "INSERT INTO scans(request_id, round_id, kind, label, score, counts, image)\nVALUES ($1, $2, $3, $4, $5, $6::jsonb, $7)\nON CONFLICT (request_id) DO NOTHING;",
+    "postgreSQLConfig": "4e968a482e482845",
+    "split": false,
+    "rowsPerMsg": "1",
+    "outputs": 1,
+    "x": 1240,
+    "y": 200,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "1cc06bc3481e2357",
+    "type": "catch",
+    "z": "61aaea65a58af8b8",
+    "name": "",
+    "scope": null,
+    "uncaught": false,
+    "x": 1020,
+    "y": 280,
+    "wires": [
+      [
+        "f2b9253ab35aee79"
+      ]
+    ]
+  },
+  {
+    "id": "f2b9253ab35aee79",
+    "type": "debug",
+    "z": "61aaea65a58af8b8",
+    "name": "error แท็บ 2",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1220,
+    "y": 280,
+    "wires": []
+  },
+  {
+    "id": "9a89d0764cb9cd9e",
+    "type": "mqtt in",
+    "z": "a30b04b4ad05021f",
+    "name": "",
+    "topic": "cpe477-peerach/save",
+    "qos": "0",
+    "datatype": "json",
+    "broker": "brk",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 140,
+    "y": 100,
+    "wires": [
+      [
+        "1fae389529fadc2d"
+      ]
+    ]
+  },
+  {
+    "id": "1fae389529fadc2d",
+    "type": "function",
+    "z": "a30b04b4ad05021f",
+    "name": "เตรียมบันทึก",
+    "func": "// บอร์ดส่ง: {round_id, employee_id, name, items:[{label, qty}]}\nconst p = msg.payload || {};\nif (!p.round_id || !Array.isArray(p.items)) return null;\nconst jobs = global.get(\"roundJobs\") || {};\nconst j = jobs[p.round_id];\nif (!j) node.warn(\"ไม่รู้งานของรอบ \" + p.round_id + \" (Node-RED อาจรีสตาร์ท) บันทึกแบบไม่มี job\");\nmsg.round_id = p.round_id;\nmsg.params = [\n    p.round_id,\n    p.employee_id || \"\",\n    j ? j.job_id : null,\n    j && j.status === \"out\" ? \"return\" : \"out\",\n    !!j,\n    JSON.stringify(p.items)\n];\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 340,
+    "y": 100,
+    "wires": [
+      [
+        "8e0e3b301c03773e"
+      ]
+    ]
+  },
+  {
+    "id": "8e0e3b301c03773e",
+    "type": "postgresql",
+    "z": "a30b04b4ad05021f",
+    "name": "บันทึก rounds + round_items",
+    "query": "WITH w AS (\n  SELECT id FROM workers WHERE employee_code = $2\n), ins AS (\n  INSERT INTO rounds(round_id, worker_id, job_id, direction, complete)\n  SELECT $1, (SELECT id FROM w), $3, $4, $5\n  ON CONFLICT (round_id) DO NOTHING\n  RETURNING round_id\n), items AS (\n  INSERT INTO round_items(round_id, tool_id, need, got)\n  SELECT $1, t.id,\n         COALESCE((SELECT qty FROM job_tools WHERE job_id = $3 AND tool_id = t.id), 0),\n         (x->>'qty')::int\n  FROM ins, jsonb_array_elements($6::jsonb) AS x\n  JOIN tools t ON t.cira_label = x->>'label'\n  ON CONFLICT DO NOTHING\n  RETURNING 1\n)\nUPDATE jobs\nSET status = CASE status WHEN 'assigned' THEN 'out' ELSE 'returned' END\nWHERE id = $3 AND $5 AND EXISTS (SELECT 1 FROM ins);",
+    "postgreSQLConfig": "4e968a482e482845",
+    "split": false,
+    "rowsPerMsg": "1",
+    "outputs": 1,
+    "x": 580,
+    "y": 100,
+    "wires": [
+      [
+        "f2ef849fc1c433cd"
+      ]
+    ]
+  },
+  {
+    "id": "f2ef849fc1c433cd",
+    "type": "function",
+    "z": "a30b04b4ad05021f",
+    "name": "ตอบ saved",
+    "func": "// บันทึกสำเร็จ (หรือเคยบันทึกแล้ว) → ตอบ saved บอร์ดจะหยุดส่งซ้ำ\nconst jobs = global.get(\"roundJobs\") || {};\ndelete jobs[msg.round_id];\nglobal.set(\"roundJobs\", jobs);\nmsg.topic = \"cpe477-peerach/saved\";\nmsg.payload = {round_id: msg.round_id, saved: true};\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 810,
+    "y": 100,
+    "wires": [
+      [
+        "e08b0f6da73c6982",
+        "3040de01c97c4f9d"
+      ]
+    ]
+  },
+  {
+    "id": "e08b0f6da73c6982",
+    "type": "mqtt out",
+    "z": "a30b04b4ad05021f",
+    "name": "ตอบบอร์ด",
+    "topic": "",
+    "qos": "0",
+    "retain": "false",
+    "respTopic": "",
+    "contentType": "",
+    "userProps": "",
+    "correl": "",
+    "expiry": "",
+    "broker": "brk",
+    "x": 1000,
+    "y": 80,
+    "wires": []
+  },
+  {
+    "id": "3040de01c97c4f9d",
+    "type": "debug",
+    "z": "a30b04b4ad05021f",
+    "name": "saved",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 990,
+    "y": 140,
+    "wires": []
+  },
+  {
+    "id": "bedd66c36e9569cb",
+    "type": "catch",
+    "z": "a30b04b4ad05021f",
+    "name": "",
+    "scope": null,
+    "uncaught": false,
+    "x": 580,
+    "y": 200,
+    "wires": [
+      [
+        "991b27cd3b275448"
+      ]
+    ]
+  },
+  {
+    "id": "991b27cd3b275448",
+    "type": "debug",
+    "z": "a30b04b4ad05021f",
+    "name": "บันทึกไม่สำเร็จ (บอร์ดจะส่งซ้ำเอง)",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 840,
+    "y": 200,
+    "wires": []
+  },
+  {
+    "id": "54e3c4cfc1e4eb6a",
+    "type": "ui-template",
+    "z": "2f351fc1d81dea5b",
+    "group": "g1",
+    "page": "",
+    "ui": "",
+    "name": "ฟอร์มสร้างงาน",
+    "order": 1,
+    "width": 0,
+    "height": 0,
+    "head": "",
+    "format": "<template>\n<div>\n  <v-text-field v-model=\"jobDate\" type=\"date\" label=\"วันที่ทำงาน\" density=\"compact\"></v-text-field>\n  <v-select v-model=\"workerId\" :items=\"workerItems\" item-title=\"label\" item-value=\"id\"\n            label=\"พนักงาน\" density=\"compact\" no-data-text=\"ยังไม่มีพนักงาน\"></v-select>\n  <v-text-field v-model=\"title\" label=\"ชื่องาน เช่น ซ่อมแอร์ ตึก A\" density=\"compact\"></v-text-field>\n  <div style=\"font-weight:600;margin:4px 0 6px\">เครื่องมือที่ต้องเอาไป (ใส่จำนวน 0 = ไม่ใช้)</div>\n  <div v-for=\"t in activeTools\" :key=\"t.id\" style=\"display:flex;align-items:center;gap:8px;margin-bottom:4px\">\n    <div style=\"flex:1\">{{ t.name }} <span style=\"opacity:.55;font-size:12px\">{{ t.cira_label }}</span></div>\n    <v-text-field v-model.number=\"qty[t.id]\" type=\"number\" min=\"0\" density=\"compact\" hide-details style=\"max-width:90px\"></v-text-field>\n  </div>\n  <div v-if=\"!activeTools.length\" style=\"opacity:.6\">ยังไม่มีเครื่องมือ เพิ่มได้ที่หน้า \"พนักงานและเครื่องมือ\"</div>\n  <v-btn color=\"primary\" block class=\"mt-3\" :disabled=\"!canCreate\" @click=\"create\">สร้างงาน</v-btn>\n</div>\n</template>\n\n<style>\n.r2g-t{width:100%;font-size:14px}\n.r2g-row{display:grid;gap:8px;align-items:center;padding:6px 4px;border-bottom:1px solid #e3e7ec;word-break:break-word}\n.r2g-h{font-weight:600;color:#445}\n</style>\n\n<script>\nexport default {\n    data () {\n        const d = new Date()\n        const p = (n) => String(n).padStart(2, '0')\n        return { workers: [], tools: [], workerId: null, title: '', qty: {},\n                 jobDate: d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()) }\n    },\n    computed: {\n        workerItems () {\n            return this.workers.filter(w => w.active !== false)\n                .map(w => ({ id: w.id, label: w.name + ' (' + w.employee_code + ')' }))\n        },\n        activeTools () { return this.tools.filter(t => t.active !== false) },\n        items () {\n            return Object.keys(this.qty).map(k => ({ tool_id: Number(k), qty: Number(this.qty[k]) || 0 }))\n                .filter(i => i.qty > 0)\n        },\n        canCreate () { return !!this.workerId && this.title.trim() !== '' && !!this.jobDate && this.items.length > 0 }\n    },\n        watch: {\n            msg: {\n                immediate: true,\n                handler () {\n                    const p = this.msg && this.msg.payload\n                    if (p && p.workers) { this.workers = p.workers; this.tools = p.tools }\n                }\n            }\n        },\n    mounted () { this.send({ payload: { action: 'load' } }) },\n    methods: {\n        create () {\n            this.send({ payload: { action: 'create_job', worker_id: this.workerId, job_date: this.jobDate,\n                                   title: this.title.trim(), items: this.items } })\n            this.title = ''\n            this.qty = {}\n        }\n    }\n}\n</script>",
+    "storeOutMessages": true,
+    "passthru": false,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "className": "",
+    "x": 560,
+    "y": 80,
+    "wires": [
+      [
+        "febce906152563a9"
+      ]
+    ]
+  },
+  {
+    "id": "4745c106aea8f06e",
+    "type": "ui-template",
+    "z": "2f351fc1d81dea5b",
+    "group": "g2",
+    "page": "",
+    "ui": "",
+    "name": "ตารางงาน",
+    "order": 1,
+    "width": 0,
+    "height": 0,
+    "head": "",
+    "format": "<template>\n<div>\n  <div class=\"r2g-t\">\n    <div class=\"r2g-row r2g-h\" style=\"grid-template-columns:repeat(6,minmax(0,1fr))\"><div>วันที่</div><div>พนักงาน</div><div>งาน</div><div>เครื่องมือ</div><div>สถานะ</div><div></div></div>\n    \n      <div class=\"r2g-row\" style=\"grid-template-columns:repeat(6,minmax(0,1fr))\" v-for=\"j in jobs\" :key=\"j.id\">\n        <div>{{ j.job_date }}</div><div>{{ j.worker }}</div><div>{{ j.title }}</div><div>{{ j.tools || '-' }}</div>\n        <div><v-chip size=\"small\" :color=\"color(j.status)\" variant=\"flat\">{{ label(j.status) }}</v-chip></div>\n        <div style=\"white-space:nowrap\">\n          <v-btn v-if=\"j.status !== 'assigned'\" size=\"x-small\" variant=\"text\" @click=\"act('reset_job', j)\">เริ่มใหม่</v-btn>\n          <v-btn v-if=\"j.status === 'assigned'\" size=\"x-small\" variant=\"text\" color=\"error\" @click=\"act('delete_job', j)\">ลบ</v-btn>\n        </div>\n      </div>\n      <div v-if=\"!jobs.length\" style=\"padding:6px 8px;opacity:.6\">ยังไม่มีงาน</div>\n    \n  </div>\n</div>\n</template>\n\n<style>\n.r2g-t{width:100%;font-size:14px}\n.r2g-row{display:grid;gap:8px;align-items:center;padding:6px 4px;border-bottom:1px solid #e3e7ec;word-break:break-word}\n.r2g-h{font-weight:600;color:#445}\n</style>\n\n<script>\nexport default {\n    data () { return { jobs: [] } },\n        watch: {\n            msg: {\n                immediate: true,\n                handler () {\n                    const p = this.msg && this.msg.payload\n                    if (p && p.workers) { this.jobs = p.jobs }\n                }\n            }\n        },\n    methods: {\n        label (s) { return { assigned: 'ยังไม่รับของ', out: 'ออกงานแล้ว', returned: 'คืนครบ' }[s] || s },\n        color (s) { return { assigned: 'grey', out: 'orange', returned: 'green' }[s] || 'grey' },\n        act (action, j) {\n            const text = action === 'delete_job' ? 'ลบงาน \"' + j.title + '\" ของ ' + j.worker + ' ?'\n                                                 : 'ตั้งงาน \"' + j.title + '\" กลับเป็นยังไม่รับของ ?'\n            if (window.confirm(text)) this.send({ payload: { action: action, job_id: j.id } })\n        }\n    }\n}\n</script>",
+    "storeOutMessages": true,
+    "passthru": false,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "className": "",
+    "x": 560,
+    "y": 140,
+    "wires": [
+      [
+        "febce906152563a9"
+      ]
+    ]
+  },
+  {
+    "id": "f6b982d888bd2c82",
+    "type": "ui-template",
+    "z": "2f351fc1d81dea5b",
+    "group": "g3",
+    "page": "",
+    "ui": "",
+    "name": "พนักงาน",
+    "order": 1,
+    "width": 0,
+    "height": 0,
+    "head": "",
+    "format": "<template>\n<div>\n  <div style=\"display:flex;gap:8px;flex-wrap:wrap\">\n    <v-text-field v-model=\"code\" label=\"รหัสพนักงาน\" density=\"compact\" style=\"min-width:110px\"></v-text-field>\n    <v-text-field v-model=\"name\" label=\"ชื่อบนจอ (อังกฤษ)\" density=\"compact\" style=\"min-width:130px\"></v-text-field>\n    <v-text-field v-model=\"face\" label=\"face_label (ชื่อคลาสใบหน้าใน CiRA)\" density=\"compact\" style=\"min-width:200px\"></v-text-field>\n  </div>\n  <v-btn color=\"primary\" :disabled=\"!code.trim() || !name.trim() || !face.trim()\" @click=\"add\">เพิ่มพนักงาน</v-btn>\n  <div class=\"r2g-t\" style=\"margin-top:12px\">\n    <div class=\"r2g-row r2g-h\" style=\"grid-template-columns:repeat(4,minmax(0,1fr))\"><div>รหัส</div><div>ชื่อ</div><div>face_label</div><div>ใช้งาน</div></div>\n    \n      <div class=\"r2g-row\" style=\"grid-template-columns:repeat(4,minmax(0,1fr))\" v-for=\"w in workers\" :key=\"w.id\" :style=\"w.active === false ? 'opacity:.45' : ''\">\n        <div>{{ w.employee_code }}</div><div>{{ w.name }}</div><div><code>{{ w.face_label }}</code></div>\n        <div><v-chip size=\"x-small\" :color=\"w.active === false ? 'grey' : 'green'\">{{ w.active === false ? 'ปิดอยู่' : 'ใช้งาน' }}</v-chip> <v-btn size=\"x-small\" variant=\"text\" @click=\"toggle(w)\">{{ w.active === false ? 'เปิดใช้' : 'ปิดใช้' }}</v-btn></div>\n      </div>\n    \n  </div>\n</div>\n</template>\n\n<style>\n.r2g-t{width:100%;font-size:14px}\n.r2g-row{display:grid;gap:8px;align-items:center;padding:6px 4px;border-bottom:1px solid #e3e7ec;word-break:break-word}\n.r2g-h{font-weight:600;color:#445}\n</style>\n\n<script>\nexport default {\n    data () { return { workers: [], code: '', name: '', face: '' } },\n        watch: {\n            msg: {\n                immediate: true,\n                handler () {\n                    const p = this.msg && this.msg.payload\n                    if (p && p.workers) { this.workers = p.workers }\n                }\n            }\n        },\n    methods: {\n        add () {\n            this.send({ payload: { action: 'add_worker', employee_code: this.code.trim(), name: this.name.trim(), face_label: this.face.trim() } })\n            this.code = ''; this.name = ''; this.face = ''\n        },\n        toggle (w) { this.send({ payload: { action: 'toggle_worker', id: w.id } }) }\n    }\n}\n</script>",
+    "storeOutMessages": true,
+    "passthru": false,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "className": "",
+    "x": 560,
+    "y": 200,
+    "wires": [
+      [
+        "febce906152563a9"
+      ]
+    ]
+  },
+  {
+    "id": "23598e397e60d841",
+    "type": "ui-template",
+    "z": "2f351fc1d81dea5b",
+    "group": "g4",
+    "page": "",
+    "ui": "",
+    "name": "เครื่องมือ",
+    "order": 1,
+    "width": 0,
+    "height": 0,
+    "head": "",
+    "format": "<template>\n<div>\n  <div style=\"display:flex;gap:8px;flex-wrap:wrap\">\n    <v-text-field v-model=\"name\" label=\"ชื่อเครื่องมือ\" density=\"compact\" style=\"min-width:140px\"></v-text-field>\n    <v-text-field v-model=\"label\" label=\"cira_label (ชื่อคลาสของใน CiRA)\" density=\"compact\" style=\"min-width:200px\"></v-text-field>\n  </div>\n  <v-btn color=\"primary\" :disabled=\"!name.trim() || !label.trim()\" @click=\"add\">เพิ่มเครื่องมือ</v-btn>\n  <div class=\"r2g-t\" style=\"margin-top:12px\">\n    <div class=\"r2g-row r2g-h\" style=\"grid-template-columns:repeat(3,minmax(0,1fr))\"><div>ชื่อ</div><div>cira_label</div><div>ใช้งาน</div></div>\n    \n      <div class=\"r2g-row\" style=\"grid-template-columns:repeat(3,minmax(0,1fr))\" v-for=\"t in tools\" :key=\"t.id\" :style=\"t.active === false ? 'opacity:.45' : ''\">\n        <div>{{ t.name }}</div><div><code>{{ t.cira_label }}</code></div>\n        <div><v-chip size=\"x-small\" :color=\"t.active === false ? 'grey' : 'green'\">{{ t.active === false ? 'ปิดอยู่' : 'ใช้งาน' }}</v-chip> <v-btn size=\"x-small\" variant=\"text\" @click=\"toggle(t)\">{{ t.active === false ? 'เปิดใช้' : 'ปิดใช้' }}</v-btn></div>\n      </div>\n    \n  </div>\n  <div style=\"opacity:.6;font-size:12px;margin-top:6px\">cira_label ต้องตรงกับชื่อคลาสในโมเดลทุกตัวอักษร ไม่อย่างนั้นระบบจะตรวจไม่เจอ</div>\n</div>\n</template>\n\n<style>\n.r2g-t{width:100%;font-size:14px}\n.r2g-row{display:grid;gap:8px;align-items:center;padding:6px 4px;border-bottom:1px solid #e3e7ec;word-break:break-word}\n.r2g-h{font-weight:600;color:#445}\n</style>\n\n<script>\nexport default {\n    data () { return { tools: [], name: '', label: '' } },\n        watch: {\n            msg: {\n                immediate: true,\n                handler () {\n                    const p = this.msg && this.msg.payload\n                    if (p && p.workers) { this.tools = p.tools }\n                }\n            }\n        },\n    methods: {\n        add () {\n            this.send({ payload: { action: 'add_tool', name: this.name.trim(), cira_label: this.label.trim() } })\n            this.name = ''; this.label = ''\n        },\n        toggle (t) { this.send({ payload: { action: 'toggle_tool', id: t.id } }) }\n    }\n}\n</script>",
+    "storeOutMessages": true,
+    "passthru": false,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "className": "",
+    "x": 560,
+    "y": 260,
+    "wires": [
+      [
+        "febce906152563a9"
+      ]
+    ]
+  },
+  {
+    "id": "2b5f07cda93cb59e",
+    "type": "ui-template",
+    "z": "2f351fc1d81dea5b",
+    "group": "g5",
+    "page": "",
+    "ui": "",
+    "name": "ประวัติ",
+    "order": 1,
+    "width": 0,
+    "height": 0,
+    "head": "",
+    "format": "<template>\n<div>\n  <div class=\"r2g-t\">\n    <div class=\"r2g-row r2g-h\" style=\"grid-template-columns:repeat(7,minmax(0,1fr))\"><div>เวลา</div><div>พนักงาน</div><div>ทิศทาง</div><div>ผล</div><div>รายการ (ได้/ต้องมี)</div><div>รูปของ</div><div>รหัสรอบ</div></div>\n    \n      <div class=\"r2g-row\" style=\"grid-template-columns:repeat(7,minmax(0,1fr))\" v-for=\"r in rounds\" :key=\"r.round_id\">\n        <div>{{ r.saved_at }}</div><div>{{ r.worker || '-' }}</div>\n        <div>{{ r.direction === 'return' ? 'ขากลับ' : 'ขาออก' }}</div>\n        <div><v-chip size=\"small\" variant=\"flat\" :color=\"r.complete ? 'green' : 'red'\">{{ r.complete ? 'ครบ' : 'ไม่ครบ/ไม่มีงาน' }}</v-chip></div>\n        <div>{{ r.items || '-' }}</div>\n        <div><v-btn v-if=\"r.photos\" size=\"small\" variant=\"tonal\" color=\"primary\" @click=\"show(r)\">ดูรูป ({{ r.photos }})</v-btn><span v-else style=\"opacity:.5\">-</span></div>\n        <div style=\"opacity:.6;font-size:12px\">{{ r.round_id }}</div>\n      </div>\n      <div v-if=\"!rounds.length\" style=\"padding:6px 8px;opacity:.6\">ยังไม่มีการบันทึก</div>\n    \n  </div>\n  <div v-if=\"openId\" style=\"margin-top:16px;padding:12px;border:1px solid #d9dee5;border-radius:6px;background:#fafbfc\">\n    <div style=\"display:flex;justify-content:space-between;align-items:center;margin-bottom:8px\">\n      <b>รูปของที่สแกน · {{ openTitle }}</b>\n      <v-btn size=\"small\" variant=\"text\" @click=\"openId = ''\">ปิด</v-btn>\n    </div>\n    <div v-if=\"loading\" style=\"opacity:.6\">กำลังโหลดรูป...</div>\n    <div v-else-if=\"!photos.length\" style=\"opacity:.6\">ไม่มีรูปในรอบนี้</div>\n    <div v-else style=\"display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px\">\n      <div v-for=\"(ph, i) in photos\" :key=\"i\" style=\"background:#fff;border:1px solid #e3e7ec;border-radius:6px;padding:6px\">\n        <img :src=\"'data:image/jpeg;base64,' + ph.img\" style=\"width:100%;border-radius:4px;display:block\">\n        <div style=\"font-size:13px;margin-top:4px\">{{ i + 1 }}. <b>{{ ph.label || 'ไม่รู้จัก' }}</b>\n          <span v-if=\"ph.score\" style=\"opacity:.7\"> · {{ Math.round(ph.score * 100) }}%</span>\n          <span style=\"opacity:.6;float:right\">{{ ph.t }}</span></div>\n      </div>\n    </div>\n  </div>\n</div>\n</template>\n\n<style>\n.r2g-t{width:100%;font-size:14px}\n.r2g-row{display:grid;gap:8px;align-items:center;padding:6px 4px;border-bottom:1px solid #e3e7ec;word-break:break-word}\n.r2g-h{font-weight:600;color:#445}\n</style>\n\n<script>\nexport default {\n    data () { return { rounds: [], openId: '', openTitle: '', photos: [], loading: false } },\n        watch: {\n            msg: {\n                immediate: true,\n                handler () {\n                    const p = this.msg && this.msg.payload\n                    if (p && p.workers) this.rounds = p.rounds\n                    if (p && p.photos_for && p.photos_for === this.openId) { this.photos = p.photos || []; this.loading = false }\n                }\n            }\n        },\n    methods: {\n        show (r) {\n            this.openId = r.round_id\n            this.openTitle = (r.worker || '-') + ' · ' + (r.direction === 'return' ? 'ขากลับ' : 'ขาออก') + ' · ' + r.saved_at\n            this.photos = []; this.loading = true\n            this.send({ payload: { action: 'photos', round_id: r.round_id } })\n        }\n    },\n}\n</script>",
+    "storeOutMessages": true,
+    "passthru": false,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "className": "",
+    "x": 560,
+    "y": 320,
+    "wires": [
+      [
+        "febce906152563a9"
+      ]
+    ]
+  },
+  {
+    "id": "febce906152563a9",
+    "type": "function",
+    "z": "2f351fc1d81dea5b",
+    "name": "แปลงเป็นคำสั่ง SQL",
+    "func": "// แปลงคำสั่งจากหน้าเว็บเป็นคำสั่ง SQL\nconst p = msg.payload || {};\nconst LOAD = \"SELECT json_build_object(\\n 'workers', (SELECT coalesce(json_agg(x ORDER BY x.id), '[]'::json) FROM\\n             (SELECT id, employee_code, name, face_label, active FROM workers) x),\\n 'tools',   (SELECT coalesce(json_agg(x ORDER BY x.id), '[]'::json) FROM\\n             (SELECT id, name, cira_label, active FROM tools) x),\\n 'jobs',    (SELECT coalesce(json_agg(x ORDER BY x.job_date, x.id), '[]'::json) FROM\\n             (SELECT j.id, to_char(j.job_date, 'YYYY-MM-DD') AS job_date, j.title, j.status, w.name AS worker,\\n                     (SELECT string_agg(t.cira_label || ' x' || jt.qty, ', ' ORDER BY t.id)\\n                        FROM job_tools jt JOIN tools t ON t.id = jt.tool_id WHERE jt.job_id = j.id) AS tools\\n                FROM jobs j JOIN workers w ON w.id = j.worker_id\\n               WHERE j.job_date >= CURRENT_DATE) x),\\n 'rounds',  (SELECT coalesce(json_agg(x), '[]'::json) FROM\\n             (SELECT r.round_id, to_char(r.saved_at, 'YYYY-MM-DD HH24:MI') AS saved_at, w.name AS worker,\\n                     r.direction, r.complete,\\n                     (SELECT count(*) FROM scans s WHERE s.round_id = r.round_id AND s.kind = 'item' AND s.image IS NOT NULL) AS photos,\\n                     (SELECT string_agg(t.cira_label || ' ' || ri.got || '/' || ri.need, ', ' ORDER BY t.id)\\n                        FROM round_items ri JOIN tools t ON t.id = ri.tool_id WHERE ri.round_id = r.round_id) AS items\\n                FROM rounds r LEFT JOIN workers w ON w.id = r.worker_id\\n               ORDER BY r.saved_at DESC LIMIT 30) x)\\n) AS data;\";\nconst out = { action: p.action, params: [] };\nswitch (p.action) {\ncase \"load\":\n    out.query = LOAD;\n    break;\ncase \"create_job\": {\n    const items = (p.items || []).filter(i => Number(i.qty) > 0);\n    if (!p.worker_id || !p.job_date || !p.title || !items.length) { node.warn(\"ข้อมูลงานไม่ครบ\"); return null; }\n    out.query = \"WITH j AS (INSERT INTO jobs(job_date, worker_id, title) VALUES ($1::date, $2, $3) RETURNING id) \" +\n                \"INSERT INTO job_tools(job_id, tool_id, qty) SELECT j.id, (x->>'tool_id')::int, (x->>'qty')::int \" +\n                \"FROM j, jsonb_array_elements($4::jsonb) AS x\";\n    out.params = [p.job_date, p.worker_id, p.title, JSON.stringify(items)];\n    out.done = \"สร้างงานแล้ว\";\n    break; }\ncase \"delete_job\":\n    out.query = \"WITH d AS (DELETE FROM job_tools WHERE job_id = $1 AND EXISTS (SELECT 1 FROM jobs WHERE id = $1 AND status = 'assigned')) \" +\n                \"DELETE FROM jobs WHERE id = $1 AND status = 'assigned'\";\n    out.params = [p.job_id];\n    out.done = \"ลบงานแล้ว\";\n    break;\ncase \"reset_job\":\n    out.query = \"UPDATE jobs SET status = 'assigned' WHERE id = $1\";\n    out.params = [p.job_id];\n    out.done = \"ตั้งงานกลับเป็นยังไม่รับของแล้ว\";\n    break;\ncase \"add_worker\":\n    if (!p.employee_code || !p.name || !p.face_label) return null;\n    out.query = \"INSERT INTO workers(employee_code, name, face_label) VALUES ($1, $2, $3)\";\n    out.params = [p.employee_code, p.name, p.face_label];\n    out.done = \"เพิ่มพนักงาน \" + p.name + \" แล้ว\";\n    break;\ncase \"toggle_worker\":\n    out.query = \"UPDATE workers SET active = NOT COALESCE(active, true) WHERE id = $1\";\n    out.params = [p.id];\n    out.done = \"เปลี่ยนสถานะพนักงานแล้ว\";\n    break;\ncase \"add_tool\":\n    if (!p.name || !p.cira_label) return null;\n    out.query = \"INSERT INTO tools(name, cira_label) VALUES ($1, $2)\";\n    out.params = [p.name, p.cira_label];\n    out.done = \"เพิ่มเครื่องมือ \" + p.name + \" แล้ว\";\n    break;\ncase \"toggle_tool\":\n    out.query = \"UPDATE tools SET active = NOT COALESCE(active, true) WHERE id = $1\";\n    out.params = [p.id];\n    out.done = \"เปลี่ยนสถานะเครื่องมือแล้ว\";\n    break;\ncase \"photos\":   // รูปของที่สแกนในรอบนี้ (ไม่มีรูปใบหน้า)\n    if (!p.round_id) return null;\n    out.query = \"SELECT json_build_object('photos_for', $1::text, 'photos', coalesce(json_agg(x ORDER BY x.created_at), '[]'::json)) AS data FROM \" +\n                \"(SELECT label, score, to_char(created_at, 'HH24:MI:SS') AS t, created_at, encode(image, 'base64') AS img \" +\n                \" FROM scans WHERE round_id = $1 AND kind = 'item' AND image IS NOT NULL) x\";\n    out.params = [p.round_id];\n    out._client = msg._client;   // ส่งรูปกลับเฉพาะเครื่องที่กดดู\n    break;\ndefault:\n    return null;\n}\nreturn out;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 820,
+    "y": 200,
+    "wires": [
+      [
+        "2f352664bcc8eb63"
+      ]
+    ]
+  },
+  {
+    "id": "2f352664bcc8eb63",
+    "type": "postgresql",
+    "z": "2f351fc1d81dea5b",
+    "name": "ฐานข้อมูล",
+    "query": "{{{msg.query}}}",
+    "postgreSQLConfig": "4e968a482e482845",
+    "split": false,
+    "rowsPerMsg": "1",
+    "outputs": 1,
+    "x": 1010,
+    "y": 200,
+    "wires": [
+      [
+        "a2105a0c3e1fb3d8"
+      ]
+    ]
+  },
+  {
+    "id": "a2105a0c3e1fb3d8",
+    "type": "function",
+    "z": "2f351fc1d81dea5b",
+    "name": "ส่งข้อมูล / แจ้งผล",
+    "func": "// load → ส่งข้อมูลให้ทุกหน้า · คำสั่งอื่น → แจ้งผลแล้วโหลดใหม่\nif (msg.action === \"photos\") {\n    const row = Array.isArray(msg.payload) ? msg.payload[0] : null;\n    return [{ payload: row ? row.data : { photos: [] }, _client: msg._client }, null, null];\n}\nif (msg.action === \"load\") {\n    const row = Array.isArray(msg.payload) ? msg.payload[0] : null;\n    return [{ payload: row ? row.data : {} }, null, null];\n}\nreturn [null, { payload: msg.done || \"บันทึกแล้ว\" }, { payload: { action: \"load\" } }];",
+    "outputs": 3,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1200,
+    "y": 200,
+    "wires": [
+      [
+        "54e3c4cfc1e4eb6a",
+        "4745c106aea8f06e",
+        "f6b982d888bd2c82",
+        "23598e397e60d841",
+        "2b5f07cda93cb59e"
+      ],
+      [
+        "27d2b001ea1b49f6"
+      ],
+      [
+        "febce906152563a9"
+      ]
+    ]
+  },
+  {
+    "id": "27d2b001ea1b49f6",
+    "type": "ui-notification",
+    "z": "2f351fc1d81dea5b",
+    "ui": "uib",
+    "position": "top right",
+    "colorDefault": true,
+    "color": null,
+    "displayTime": "3",
+    "showCountdown": true,
+    "outputs": 1,
+    "allowDismiss": true,
+    "dismissText": "ปิด",
+    "raw": false,
+    "className": "",
+    "name": "แจ้งเตือน",
+    "x": 1410,
+    "y": 260,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "393d6568b806df0a",
+    "type": "catch",
+    "z": "2f351fc1d81dea5b",
+    "name": "error ฐานข้อมูล",
+    "scope": [
+      "2f352664bcc8eb63"
+    ],
+    "uncaught": false,
+    "x": 1010,
+    "y": 300,
+    "wires": [
+      [
+        "83c7e9bf0400d792"
+      ]
+    ]
+  },
+  {
+    "id": "83c7e9bf0400d792",
+    "type": "function",
+    "z": "2f351fc1d81dea5b",
+    "name": "ข้อความ error",
+    "func": "// แปลง error จากฐานข้อมูลเป็นข้อความที่อ่านง่าย\nconst e = (msg.error && msg.error.message) || \"\";\nlet t = \"บันทึกไม่สำเร็จ: \" + e;\nif (/duplicate key/i.test(e)) t = \"ข้อมูลซ้ำกับที่มีอยู่แล้ว (รหัส / face_label / cira_label ต้องไม่ซ้ำ)\";\nelse if (/foreign key/i.test(e)) t = \"ลบไม่ได้ เพราะมีข้อมูลอื่นอ้างถึงอยู่\";\nelse if (/ECONN|timeout|getaddrinfo/i.test(e)) t = \"ต่อฐานข้อมูลไม่ได้ (เช็ก Tailscale และคอมเครื่องที่มีฐานข้อมูล)\";\nreturn { payload: t };",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1200,
+    "y": 300,
+    "wires": [
+      [
+        "27d2b001ea1b49f6"
+      ]
+    ]
+  },
+  {
+    "id": "40f6598604f53652",
+    "type": "inject",
+    "z": "2f351fc1d81dea5b",
+    "name": "รีเฟรชทุก 5 วิ",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "5",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "1",
+    "topic": "",
+    "payload": "{\"action\":\"load\"}",
+    "payloadType": "json",
+    "x": 330,
+    "y": 40,
+    "wires": [
+      [
+        "febce906152563a9"
+      ]
+    ]
+  },
+  {
+    "id": "91952e163c5cce24",
+    "type": "comment",
+    "z": "2f351fc1d81dea5b",
+    "name": "เปิดหน้าเว็บที่ http://<IP คอม>:1880/dashboard · ต้องตั้ง Server ของโหนด 'ฐานข้อมูล' ให้เป็นตัวที่ต่อได้",
+    "info": "",
+    "x": 420,
+    "y": 380,
+    "wires": []
+  },
+  {
+    "id": "c975969b26ae12f6",
+    "type": "global-config",
+    "env": [],
+    "modules": {
+      "node-red-contrib-postgresql": "0.16.2",
+      "@flowfuse/node-red-dashboard": "1.37.0"
+    }
+  }
+]
